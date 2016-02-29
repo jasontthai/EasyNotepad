@@ -1,10 +1,8 @@
-package hello;
+package hello.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import hello.beans.Hello;
-
-import java.util.List;
 
 /**
  * Created by trit on 2/27/16.
