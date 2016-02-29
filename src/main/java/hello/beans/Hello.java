@@ -1,8 +1,6 @@
-package hello;
+package hello.beans;
 
 import org.springframework.data.annotation.Id;
-
-import java.io.Serializable;
 
 /**
  * Created by trit on 2/27/16.

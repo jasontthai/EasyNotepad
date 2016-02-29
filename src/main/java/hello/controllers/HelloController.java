@@ -3,8 +3,8 @@ package hello.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import hello.Hello;
 import hello.HelloRepository;
+import hello.beans.Hello;
 
 import javax.validation.Valid;
 import java.util.List;

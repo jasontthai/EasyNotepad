@@ -2,6 +2,8 @@ package hello;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import hello.beans.Hello;
+
 import java.util.List;
 
 /**
