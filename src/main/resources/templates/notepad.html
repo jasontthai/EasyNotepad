@@ -5,8 +5,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <h1><a th:href="@{/notepad}">Create a new Notepad</a></h1>
-    <form action="#" th:action="@{/notepad}" th:object="${notepad}" method="post">
+	<h1>
+		<a th:href="@{/notepad}">Create a new Notepad</a>
+	</h1>
+	<form action="#" th:action="@{/notepad}" th:object="${notepad}"
+		method="post">
 		<table>
 			<tr>
 				<td>Title:</td>
@@ -21,7 +24,7 @@
 			</tr>
 		</table>
 	</form>
-    <p th:if="${created}">Notepad Created</p>
+	<p th:if="${created}">Notepad Created</p>
 	<table border="1">
 		<thead>
 			<tr>
@@ -38,7 +41,8 @@
 				<td th:text="${notepad.title}">Title ..</td>
 				<td th:text="${notepad.description}">Text ...</td>
 				<td>
-					<form action="#" th:action="@{/notepad/{id}(id=${notepad.id})}" th:method="delete">
+					<form action="#" th:action="@{/notepad/{id}(id=${notepad.id})}"
+						th:method="delete">
 						<button type="submit">Delete</button>
 					</form>
 				</td>
