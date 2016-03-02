@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hello World!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th th:text="id">Id</th>
+				<th th:text="title">Title</th>
+				<th th:text="description">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="notepad : ${notepads}">
+				<td><a th:href="@{/notepad/{id}(id=${notepad.id})}"
+					th:text="${notepad.id}">1</a></td>
+				<td th:text="${notepad.title}">Title ..</td>
+				<td th:text="${notepad.description}">Text ...</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
