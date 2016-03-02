@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+    <h1>Create a new Notepad</h1>
     <form action="#" th:action="@{/notepad}" th:object="${notepad}" method="post">
 		<table>
 			<tr>
@@ -12,7 +13,7 @@
 				<td><input type="text" th:field="*{title}" /></td>
 			</tr>
 			<tr>
-				<td>Content:</td>
+				<td>Description:</td>
 				<td><input type="text" th:field="*{description}" /></td>
 			</tr>
 			<tr>
