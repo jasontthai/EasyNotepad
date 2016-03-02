@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +28,8 @@ import hello.repositories.NotepadRepository;
 @RestController
 public class NotepadController {
 
+    private static final Logger logger = LoggerFactory.getLogger(NotepadController.class);
+
     @Autowired
     private NotepadRepository notepadRepository;
 
@@ -39,6 +43,7 @@ public class NotepadController {
 
     @RequestMapping(value = "/notepad", method = RequestMethod.POST)
     public Notepad createNotepad(@RequestBody @Valid final Notepad notepad) {
+        logger.info("Saving notepad: {}", notepad);
         return notepadRepository.save(notepad);
     }
 
@@ -49,12 +54,14 @@ public class NotepadController {
             List<Note> notes = noteRepository.findByNotepadId(notepadId);
             notepad.setNotes(notes);
         }
+        logger.info("Returning notepad: {}", notepad);
         return notepad;
     }
 
     @RequestMapping(value = "/notepad/{notepadId}/note", method = RequestMethod.POST)
     public Note createNote(@PathVariable("notepadId") String notepadId, @RequestBody @Valid final Note note) {
         note.setNotepadId(notepadId);
+        logger.info("Creating note: {}", note);
         return noteRepository.save(note);
     }
 }
