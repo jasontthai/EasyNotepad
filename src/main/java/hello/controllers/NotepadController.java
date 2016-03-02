@@ -11,13 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import hello.beans.Note;
 import hello.beans.Notepad;
@@ -40,15 +40,20 @@ public class NotepadController {
     private NoteRepository noteRepository;
 
     @RequestMapping(value = "/notepad")
-    @ModelAttribute("notepads")
-    public List<Notepad> getNotePads() {
-        return notepadRepository.findAll();
+    public String getNotePads(Model model) {
+        model.addAttribute("notepad", new Notepad());
+        model.addAttribute("notepads", notepadRepository.findAll());
+        return "notepad";
     }
 
     @RequestMapping(value = "/notepad", method = RequestMethod.POST)
-    public Notepad createNotepad(@RequestBody @Valid final Notepad notepad) {
+    public String createNotepad(@ModelAttribute @RequestBody @Valid final Notepad notepad, Model model) {
         logger.info("Saving notepad: {}", notepad);
-        return notepadRepository.save(notepad);
+        notepadRepository.save(notepad);
+        model.addAttribute("notepad", new Notepad());
+        model.addAttribute("notepads", notepadRepository.findAll());
+        model.addAttribute("created", true);
+        return "notepad";
     }
 
     @RequestMapping(value = "/notepad/{notepadId}", method = RequestMethod.GET)
@@ -63,6 +68,15 @@ public class NotepadController {
         return notepad;
     }
 
+    @RequestMapping(value = "/notepad/{notepadId}", method = RequestMethod.DELETE)
+    public String deleteNotepad(@PathVariable("notepadId") String notepadId, Model model) {
+        logger.info("Removing notepad with id: {}", notepadId);
+        notepadRepository.delete(notepadId);
+        model.addAttribute("notepad", new Notepad());
+        model.addAttribute("notepads", notepadRepository.findAll());
+        return "notepad";
+    }
+    
     @RequestMapping(value = "/notepad/{notepadId}/note", method = RequestMethod.POST)
     public Note createNote(@PathVariable("notepadId") String notepadId, @RequestBody @Valid final Note note) {
         note.setNotepadId(notepadId);
