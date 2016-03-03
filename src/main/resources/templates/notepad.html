@@ -6,9 +6,9 @@
 </head>
 <body>
 	<h1>
-		<a th:href="@{/notepad}">Create a new Notepad</a>
+		<a th:href="@{/notepads}">Create a new Notepad</a>
 	</h1>
-	<form action="#" th:action="@{/notepad}" th:object="${notepad}"
+	<form action="#" th:action="@{/notepads}" th:object="${notepad}"
 		method="post">
 		<table>
 			<tr>
@@ -36,12 +36,12 @@
 		</thead>
 		<tbody>
 			<tr th:each="notepad : ${notepads}">
-				<td><a th:href="@{/notepad/{id}(id=${notepad.id})}"
+				<td><a th:href="@{/notepads/{id}(id=${notepad.id})}"
 					th:text="${notepad.id}">1</a></td>
 				<td th:text="${notepad.title}">Title ..</td>
 				<td th:text="${notepad.description}">Text ...</td>
 				<td>
-					<form action="#" th:action="@{/notepad/{id}(id=${notepad.id})}"
+					<form action="#" th:action="@{/notepads/{id}(id=${notepad.id})}"
 						th:method="delete">
 						<button type="submit">Delete</button>
 					</form>

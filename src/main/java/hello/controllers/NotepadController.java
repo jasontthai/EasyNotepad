@@ -39,14 +39,14 @@ public class NotepadController {
     @Autowired
     private NoteRepository noteRepository;
 
-    @RequestMapping(value = "/notepad")
+    @RequestMapping(value = "/notepads")
     public String getNotePads(Model model) {
         model.addAttribute("notepad", new Notepad());
         model.addAttribute("notepads", notepadRepository.findAll());
         return "notepad";
     }
 
-    @RequestMapping(value = "/notepad", method = RequestMethod.POST)
+    @RequestMapping(value = "/notepads", method = RequestMethod.POST)
     public String createNotepad(@ModelAttribute @RequestBody @Valid final Notepad notepad, Model model) {
         logger.info("Saving notepad: {}", notepad);
         notepadRepository.save(notepad);
@@ -56,7 +56,7 @@ public class NotepadController {
         return "notepad";
     }
 
-    @RequestMapping(value = "/notepad/{notepadId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/notepads/{notepadId}", method = RequestMethod.GET)
     @ResponseBody
     public Notepad getNotePad(@PathVariable("notepadId") String notepadId) {
         Notepad notepad = notepadRepository.findOne(notepadId);
@@ -68,7 +68,7 @@ public class NotepadController {
         return notepad;
     }
 
-    @RequestMapping(value = "/notepad/{notepadId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/notepads/{notepadId}", method = RequestMethod.DELETE)
     public String deleteNotepad(@PathVariable("notepadId") String notepadId, Model model) {
         logger.info("Removing notepad with id: {}", notepadId);
         notepadRepository.delete(notepadId);
@@ -77,7 +77,7 @@ public class NotepadController {
         return "notepad";
     }
     
-    @RequestMapping(value = "/notepad/{notepadId}/note", method = RequestMethod.POST)
+    @RequestMapping(value = "/notepads/{notepadId}/note", method = RequestMethod.POST)
     public Note createNote(@PathVariable("notepadId") String notepadId, @RequestBody @Valid final Note note) {
         note.setNotepadId(notepadId);
         logger.info("Creating note: {}", note);
