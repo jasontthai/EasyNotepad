@@ -76,8 +76,16 @@ public class NotepadController {
         model.addAttribute("notepads", notepadRepository.findAll());
         return "notepad";
     }
-    
-    @RequestMapping(value = "/notepads/{notepadId}/note", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/notepads/{notepadId}/notes")
+    public String getNotes(@PathVariable("notepadId") String notepadId, Model model) {
+        logger.info("Getting notes from notepad: {}", notepadId);
+        List<Note> notes = noteRepository.findByNotepadId(notepadId);
+        model.addAttribute("notes", notes);
+        return "note";
+    }
+
+    @RequestMapping(value = "/notepads/{notepadId}/notes", method = RequestMethod.POST)
     public Note createNote(@PathVariable("notepadId") String notepadId, @RequestBody @Valid final Note note) {
         note.setNotepadId(notepadId);
         logger.info("Creating note: {}", note);

@@ -36,7 +36,7 @@
 		</thead>
 		<tbody>
 			<tr th:each="notepad : ${notepads}">
-				<td><a th:href="@{/notepads/{id}(id=${notepad.id})}"
+				<td><a th:href="@{/notepads/{id}/notes(id=${notepad.id})}"
 					th:text="${notepad.id}">1</a></td>
 				<td th:text="${notepad.title}">Title ..</td>
 				<td th:text="${notepad.description}">Text ...</td>
