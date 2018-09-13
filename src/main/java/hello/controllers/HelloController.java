@@ -37,4 +37,9 @@ public class HelloController {
     public List<Hello> getHellos() {
         return helloRepository.findAll();
     }
+
+    @GetMapping("/wakemydyno.txt")
+    public @ResponseBody String getText() {
+        return "Hello world";
+    }
 }
