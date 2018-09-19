@@ -68,6 +68,20 @@
             <artifactId>jsondoc-ui-webjar</artifactId>
             <version>1.2.11</version>
         </dependency>
+
+        <!-- ========= javx ========-->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+        <!-- ======= Facebook ======= -->
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-facebook</artifactId>
+            <version>2.0.3.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <properties>
